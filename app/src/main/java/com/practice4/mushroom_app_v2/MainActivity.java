@@ -111,6 +111,7 @@ public class MainActivity extends AppCompatActivity  {
                 Intent galleryView= new Intent(MainActivity.this,GalleryActivity.class);
                 if (   !imgUrl.equals(""))
                 {
+                    // send imgurl to next activity
                     galleryView.putExtra("image",imgUrl);
                     startActivity(galleryView);
                 }
@@ -190,12 +191,13 @@ public class MainActivity extends AppCompatActivity  {
             String desc= jsonObject.getString("description");
             String ext= jsonObject.getString("extract");
 
-            imgUrl=jsonObject.getJSONObject("originalimage").getString("source");
             description.setText("Description: "+desc);
             scienceName.setText("Name: "+title);
             extract.setText(ext);
-            galleryBtn.setEnabled(true);
+
+            imgUrl=jsonObject.getJSONObject("originalimage").getString("source");
             galleryBtn.setVisibility(View.VISIBLE);
+            galleryBtn.setEnabled(true);
 
         }catch (JSONException e)
         {
